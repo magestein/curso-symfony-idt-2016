@@ -1,18 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block stylesheets %}{% endblock %}
-
-{% block javascripts %}{% endblock %}
-
 {% block body %}
 
-    <div>banner</div>
-    <div>menu</div>
+    {% include 'Partials/mainmenu.html.twig' with {'marca': 'Misss Empresa'} %}
 
-    <h1>{{ block('title') }}</h1>
+    <div class="container">
 
-    {% block contenido %}{% endblock %}
+        <div class="page-header">
+            <h1>{{ block('title') }}</h1>
+        </div>
 
-    <div>pie de página</div>
+        {% block contenido %}{% endblock %}
+
+    </div>
+
+    <div class="container-fluid">
+        <div>pie de página</div>
+    </div>
 
 {% endblock %}
