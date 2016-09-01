@@ -14,7 +14,7 @@ class DefaultController extends Controller
         $a = '<strong>holaaaaa</strong>';
         $foo = uniqid();
 
-        return $this->render('default/index.html.twig', array(
+        return $this->render('@App/default/index.html.twig', array(
             'var1' => $foo,
             'a' => $a
         ));
