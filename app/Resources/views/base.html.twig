@@ -4,20 +4,22 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="all,follow">
+        <meta name="googlebot" content="index,follow,snippet,archive">
 
         <title>{% block title %}SIN TITULO!{% endblock %}</title>
 
-        <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <meta name="keywords" content="{% block keywords %}{% endblock %}">
 
         {% block stylesheets %}{% endblock %}
 
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        {% block javascriptsHead %}{% endblock %}
+
+        {% block favicon %}{% endblock %}
+
     </head>
     <body>
         {% block body %}{% endblock %}
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="/bootstrap/js/bootstrap.min.js"></script>
 
         {% block javascripts %}{% endblock %}
     </body>
