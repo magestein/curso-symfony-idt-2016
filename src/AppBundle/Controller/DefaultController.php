@@ -20,4 +20,13 @@ class DefaultController extends Controller
         ));
     }
 
+    public function contactoAction()
+    {
+        return $this->render('@App/default/contacto.html.twig');
+    }
+
+    public function productosAction()
+    {
+        return $this->render('@App/default/productos.html.twig');
+    }
 }
