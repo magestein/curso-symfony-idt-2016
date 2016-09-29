@@ -11,12 +11,12 @@ class DefaultController extends Controller
 {
     public function indexAction(Request $request)
     {
-        $a2 = '<strong>holaaaaa</strong>';
+        $a3 = '<strong>holaaaaa</strong>';
         $foo = uniqid();
 
         return $this->render('@App/default/index.html.twig', array(
             'var1' => $foo,
-            'a' => $a2
+            'a' => $a3
         ));
     }
 
