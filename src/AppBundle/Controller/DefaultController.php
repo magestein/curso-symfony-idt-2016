@@ -17,23 +17,23 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getEntityManager();
 
         $c1 = new Categoria();
-
-        $c1->setNombre('Categoria 2')
+        $c1->setNombre('Categoria 5')
             ->setEstado('A');
 
         $p1 = new Producto();
-
         $p1
-            ->setNombre('Producto 1')
+            ->setNombre('Producto 5')
             ->setEstado('A')
             ->setPrecio(1000)
             ->setOferta(false)
             ->setNuevo(new \DateTime())
             ->setCategoria($c1);
 
-
-        $em->persist($c1);
         $em->persist($p1);
+        $em->flush();
+
+        $em->remove($p1);
+
         $em->flush();
 
         $a2 = '<strong>holaaaaa</strong>';

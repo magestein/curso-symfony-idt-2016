@@ -25,7 +25,7 @@ class Producto
     /**
      * @var Categoria
      *
-     * @ORM\ManyToOne(targetEntity="Categoria")
+     * @ORM\ManyToOne(targetEntity="Categoria", cascade={"persist"})
      * @ORM\JoinColumn(name="categoria_id", referencedColumnName="id")
      */
     private $categoria;
