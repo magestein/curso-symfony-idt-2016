@@ -16,25 +16,9 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $c1 = new Categoria();
-        $c1->setNombre('Categoria 5')
-            ->setEstado('A');
+        $productos = $em->getRepository('AppBundle:Producto')->findAll();
 
-        $p1 = new Producto();
-        $p1
-            ->setNombre('Producto 5')
-            ->setEstado('A')
-            ->setPrecio(1000)
-            ->setOferta(false)
-            ->setNuevo(new \DateTime())
-            ->setCategoria($c1);
-
-        $em->persist($p1);
-        $em->flush();
-
-        $em->remove($p1);
-
-        $em->flush();
+        dump($productos);
 
         $a2 = '<strong>holaaaaa</strong>';
         $foo = uniqid();
