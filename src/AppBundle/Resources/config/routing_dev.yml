@@ -1,0 +1,3 @@
+dataimport:
+    path:      /data-import
+    defaults:  { _controller: AppBundle:Default:dataImport }

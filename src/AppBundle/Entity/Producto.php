@@ -18,7 +18,7 @@ class Producto
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
@@ -61,7 +61,7 @@ class Producto
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="nuevo", type="date")
+     * @ORM\Column(name="nuevo", type="date", nullable=true)
      */
     private $nuevo;
 
