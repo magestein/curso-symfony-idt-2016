@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use AppBundle\Entity\Categoria;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * Producto
@@ -65,6 +66,17 @@ class Producto
      */
     private $nuevo;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fecha_alta", type="datetime")
+     */
+    private $fechaAlta;
+
+    public function __construct()
+    {
+        $this->fechaAlta = new \DateTime();
+    }
 
     /**
      * Get id
@@ -218,5 +230,21 @@ class Producto
     public function getNuevo()
     {
         return $this->nuevo;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getFechaAlta()
+    {
+        return $this->fechaAlta;
+    }
+
+    /**
+     * @param \DateTime $fechaAlta
+     */
+    public function setFechaAlta($fechaAlta)
+    {
+        $this->fechaAlta = $fechaAlta;
     }
 }
