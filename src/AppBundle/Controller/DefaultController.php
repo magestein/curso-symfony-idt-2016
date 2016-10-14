@@ -4,7 +4,6 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Categoria;
 use AppBundle\Entity\Producto;
-use Doctrine\ORM\Query\Expr;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -14,7 +13,7 @@ class DefaultController extends Controller
     {
         $productos = $this->getDoctrine()
             ->getRepository('AppBundle:Producto')
-            ->getNuevosProductos();
+            ->getNuevosProductos(8);
 
         return $this->render('@App/default/index.html.twig', array(
             'productos' => $productos

@@ -6,171 +6,17 @@
 
     <div id="content">
         <div class="container">
-            <p class="text-muted lead text-center">In our Ladies department we offer wide selection of the best products we have found and carefully selected worldwide. Pellentesque habitant morbi tristique senectus et netuss.</p>
+            <p class="text-muted lead text-center">In our Ladies department we offer wide selection of the best products
+                we have found and carefully selected worldwide. Pellentesque habitant morbi tristique senectus et
+                netuss.</p>
 
             <div class="row products">
 
-                {% include '@App/Partials/producto.html.twig' with {'nombre': 'Mi producto'} %}
+                {% for producto in productos %}
+                    {% include '@App/Partials/producto.html.twig' with {'producto': producto} %}
+                {% endfor %}
 
-                {% include '@App/Partials/producto.html.twig' with {'nombre': 'Mi producto 2'} %}
-
-                <div class="col-md-3 col-sm-4">
-                    <div class="product">
-                        <div class="image">
-                            <a href="shop-detail.html">
-                                <img src="{{ asset('bundles/app/img/product3.jpg') }}" alt="" class="img-responsive image1">
-                            </a>
-                        </div>
-                        <!-- /.image -->
-                        <div class="text">
-                            <h3><a href="shop-detail.html">Black Blouse Versace</a></h3>
-                            <p class="price">$143.00</p>
-                            <p class="buttons">
-                                <a href="shop-detail.html" class="btn btn-default">View detail</a>
-                                <a href="shop-basket.html" class="btn btn-template-main"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                            </p>
-
-                        </div>
-                        <!-- /.text -->
-                    </div>
-                    <!-- /.product -->
-                </div>
-
-                <div class="col-md-3 col-sm-4">
-                    <div class="product">
-                        <div class="image">
-                            <a href="shop-detail.html">
-                                <img src="{{ asset('bundles/app/img/product4.jpg') }}" alt="" class="img-responsive image1">
-                            </a>
-                        </div>
-                        <!-- /.image -->
-                        <div class="text">
-                            <h3><a href="shop-detail.html">Black Blouse Versace</a></h3>
-                            <p class="price">$143.00</p>
-                            <p class="buttons">
-                                <a href="shop-detail.html" class="btn btn-default">View detail</a>
-                                <a href="shop-basket.html" class="btn btn-template-main"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                            </p>
-
-                        </div>
-                        <!-- /.text -->
-                    </div>
-                    <!-- /.product -->
-                </div>
-
-                <div class="col-md-3 col-sm-4">
-                    <div class="product">
-                        <div class="image">
-                            <a href="shop-detail.html">
-                                <img src="{{ asset('bundles/app/img/product3.jpg') }}" alt="" class="img-responsive image1">
-                            </a>
-                        </div>
-                        <!-- /.image -->
-                        <div class="text">
-                            <h3><a href="shop-detail.html">White Blouse Armani</a></h3>
-                            <p class="price"><del>$280</del> $143.00</p>
-                            <p class="buttons">
-                                <a href="shop-detail.html" class="btn btn-default">View detail</a>
-                                <a href="shop-basket.html" class="btn btn-template-main"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                            </p>
-                        </div>
-                        <!-- /.text -->
-
-                        <div class="ribbon sale">
-                            <div class="theribbon">SALE</div>
-                            <div class="ribbon-background"></div>
-                        </div>
-                        <!-- /.ribbon -->
-
-                        <div class="ribbon new">
-                            <div class="theribbon">NEW</div>
-                            <div class="ribbon-background"></div>
-                        </div>
-                        <!-- /.ribbon -->
-                    </div>
-                    <!-- /.product -->
-                </div>
-
-                <div class="col-md-3 col-sm-4">
-                    <div class="product">
-                        <div class="image">
-                            <a href="shop-detail.html">
-                                <img src="{{ asset('bundles/app/img/product4.jpg') }}" alt="" class="img-responsive image1">
-                            </a>
-                        </div>
-                        <!-- /.image -->
-                        <div class="text">
-                            <h3><a href="shop-detail.html">White Blouse Versace</a></h3>
-                            <p class="price">$143.00</p>
-                            <p class="buttons">
-                                <a href="shop-detail.html" class="btn btn-default">View detail</a>
-                                <a href="shop-basket.html" class="btn btn-template-main"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                            </p>
-
-                        </div>
-                        <!-- /.text -->
-
-                        <div class="ribbon new">
-                            <div class="theribbon">NEW</div>
-                            <div class="ribbon-background"></div>
-                        </div>
-                        <!-- /.ribbon -->
-                    </div>
-                    <!-- /.product -->
-                </div>
-
-                <div class="col-md-3 col-sm-4">
-                    <div class="product">
-                        <div class="image">
-                            <a href="shop-detail.html">
-                                <img src="{{ asset('bundles/app/img/product2.jpg') }}" alt="" class="img-responsive image1">
-                            </a>
-                        </div>
-                        <!-- /.image -->
-                        <div class="text">
-                            <h3><a href="shop-detail.html">White Blouse Versace</a></h3>
-                            <p class="price">$143.00</p>
-                            <p class="buttons">
-                                <a href="shop-detail.html" class="btn btn-default">View detail</a>
-                                <a href="shop-basket.html" class="btn btn-template-main"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                            </p>
-
-                        </div>
-                        <!-- /.text -->
-
-                        <div class="ribbon new">
-                            <div class="theribbon">NEW</div>
-                            <div class="ribbon-background"></div>
-                        </div>
-                        <!-- /.ribbon -->
-                    </div>
-                    <!-- /.product -->
-                </div>
-
-                <div class="col-md-3 col-sm-4">
-                    <div class="product">
-                        <div class="image">
-                            <a href="shop-detail.html">
-                                <img src="{{ asset('bundles/app/img/product1.jpg') }}" alt="" class="img-responsive image1">
-                            </a>
-                        </div>
-                        <!-- /.image -->
-                        <div class="text">
-                            <h3><a href="shop-detail.html">Fur coat</a></h3>
-                            <p class="price">$143.00</p>
-                            <p class="buttons">
-                                <a href="shop-detail.html" class="btn btn-default">View detail</a>
-                                <a href="shop-basket.html" class="btn btn-template-main"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                            </p>
-
-                        </div>
-                        <!-- /.text -->
-                    </div>
-                    <!-- /.product -->
-                </div>
-                <!-- /.col-md-4 -->
             </div>
-            <!-- /.products -->
 
         </div>
         <!-- /.container -->

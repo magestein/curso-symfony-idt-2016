@@ -13,7 +13,7 @@ class ProductoRepository extends \Doctrine\ORM\EntityRepository
     /**
      * Este método devuele los nuevos productos de la tienda.
      *
-     * @param $max
+     * @param $max int Cantidad maxima de productos a devolver
 
      * @return array
      */
@@ -27,6 +27,7 @@ class ProductoRepository extends \Doctrine\ORM\EntityRepository
             ->andWhere('c.estado = :estadoCategoria')
 
             ->orderBy('p.fechaAlta', 'DESC')
+            ->addOrderBy('p.id', 'DESC')
             ->setMaxResults($max)
 
             ->setParameter('estadoProducto', 'A')

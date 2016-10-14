@@ -78,6 +78,14 @@ class Producto
         $this->fechaAlta = new \DateTime();
     }
 
+    public function getDescuento()
+    {
+        if($this->oferta)
+            return $this->precio * 0.9;
+        else
+            return null;
+    }
+
     /**
      * Get id
      *
