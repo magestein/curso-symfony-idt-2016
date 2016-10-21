@@ -13,7 +13,10 @@
             <div class="row products">
 
                 {% for producto in productos %}
-                    {% include '@App/Partials/producto.html.twig' with {'producto': producto} %}
+                    {% include '@App/Partials/producto.html.twig'
+                    with {
+                    'producto': producto
+                    } %}
                 {% endfor %}
 
             </div>

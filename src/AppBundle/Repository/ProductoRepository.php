@@ -2,6 +2,8 @@
 
 namespace AppBundle\Repository;
 
+use Doctrine\ORM\Query;
+
 /**
  * ProductoRepository
  *
@@ -14,7 +16,6 @@ class ProductoRepository extends \Doctrine\ORM\EntityRepository
      * Este método devuele los nuevos productos de la tienda.
      *
      * @param $max int Cantidad maxima de productos a devolver
-
      * @return array
      */
     public function getNuevosProductos($max = 8)
@@ -25,15 +26,43 @@ class ProductoRepository extends \Doctrine\ORM\EntityRepository
             ->join('p.categoria', 'c')
             ->where('p.estado = :estadoProducto')
             ->andWhere('c.estado = :estadoCategoria')
-
             ->orderBy('p.fechaAlta', 'DESC')
             ->addOrderBy('p.id', 'DESC')
             ->setMaxResults($max)
-
             ->setParameter('estadoProducto', 'A')
             ->setParameter('estadoCategoria', 'A')
-
             ->getQuery()
+            ->getResult();
+
+        return $productos;
+    }
+
+    /**
+     * Este método realiza una búsqueda de productos activos.
+     *
+     * @param $params array Se pemite buscar por:
+     *  "categoria" -> slug de la categoría
+     * @return array
+     */
+    public function getProductos($params = array())
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder()
+            ->select('p')
+            ->from('AppBundle:Producto', 'p')
+            ->join('p.categoria', 'c')
+            ->where('p.estado = :estadoProducto')
+            ->andWhere('c.estado = :estadoCategoria')
+            ->orderBy('p.nombre', 'ASC')
+            ->addOrderBy('p.id', 'ASC')
+            ->setParameter('estadoProducto', 'A')
+            ->setParameter('estadoCategoria', 'A');
+
+        if (isset($params['categoria'])) {
+            $qb->andWhere('c.slug = :categoria')
+                ->setParameter('categoria', $params['categoria']);
+        }
+
+        $productos = $qb->getQuery()
             ->getResult();
 
         return $productos;

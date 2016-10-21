@@ -6,6 +6,10 @@ productos:
     path:      /productos
     defaults:  { _controller: AppBundle:Default:productos }
 
+productos_by_categoria:
+    path:      /{categoriaSlug}/productos
+    defaults:  { _controller: AppBundle:Default:productos }
+
 contacto:
     path:      /contacto
     defaults:  { _controller: AppBundle:Default:contacto }

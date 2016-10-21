@@ -25,9 +25,26 @@ class DefaultController extends Controller
         return $this->render('@App/default/contacto.html.twig');
     }
 
-    public function productosAction()
+    public function productosAction($categoriaSlug=null)
     {
-        return $this->render('@App/default/productos.html.twig');
+        $params = array();
+
+        if($categoriaSlug){
+            $params['categoria'] = $categoriaSlug;
+        }
+
+        $productos = $this->getDoctrine()
+            ->getRepository('AppBundle:Producto')
+            ->getProductos($params);
+
+        $categorias = $this->getDoctrine()
+            ->getRepository('AppBundle:Categoria')
+            ->getCategorias();
+
+        return $this->render('@App/default/productos.html.twig', array(
+            'productos' => $productos,
+            'categorias' => $categorias
+        ));
     }
 
     public function dataImportAction()
@@ -38,14 +55,17 @@ class DefaultController extends Controller
         $c2 = new Categoria();
         $c3 = new Categoria();
 
-        $c1->setNombre('Categoría 1')
-            ->setEstado('A');
+        $c1->setNombre('Electrodomésticos')
+            ->setEstado('A')
+            ->setSlug('electrodomesticos');
 
-        $c2->setNombre('Categoría 2')
-            ->setEstado('I');
+        $c2->setNombre('Juegos y Consolas')
+            ->setEstado('I')
+            ->setSlug('juegos-y-consolas');
 
-        $c3->setNombre('Categoría 3')
-            ->setEstado('A');
+        $c3->setNombre('ropa')
+            ->setEstado('A')
+            ->setSlug('ropa');
 
 
         $p1 = new Producto();

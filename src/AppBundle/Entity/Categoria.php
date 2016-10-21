@@ -36,6 +36,13 @@ class Categoria
     private $estado;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="slug", type="string", length=100)
+     */
+    private $slug;
+
+    /**
      * Get id
      *
      * @return int
@@ -91,5 +98,21 @@ class Categoria
     public function getEstado()
     {
         return $this->estado;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param string $slug
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
     }
 }

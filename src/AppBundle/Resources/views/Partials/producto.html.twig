@@ -1,6 +1,14 @@
 {% set imagen = producto.nombre in ['Producto 1', 'Producto 2', 'Producto 3'] ? producto.nombre : 'producto' %}
 
-<div class="col-md-3 col-sm-4">
+{% set pantallaGrande = pantallaGrande is defined ? pantallaGrande : true %}
+
+{#{% if pantallaGrande is defined %}#}
+    {#{% set pantallaGrande = pantallaGrande %}#}
+{#{% else %}#}
+    {#{% set pantallaGrande = true %}#}
+{#{% endif %}#}
+
+<div class="{% if pantallaGrande %}col-md-3 col-sm-4{% else %}col-md-4 col-sm-6{% endif %}">
     <div class="product">
         <div class="image">
             <a href="shop-detail.html">
