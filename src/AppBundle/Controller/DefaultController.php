@@ -3,9 +3,13 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Categoria;
+use AppBundle\Entity\Contacto;
+use AppBundle\Entity\Parametro;
 use AppBundle\Entity\Producto;
+use AppBundle\Form\ContactoType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
@@ -20,9 +24,31 @@ class DefaultController extends Controller
         ));
     }
 
-    public function contactoAction()
+    public function contactoAction(Request $request)
     {
-        return $this->render('@App/default/contacto.html.twig');
+        $contacto = new Contacto();
+
+        $asuntosOptions = $this->getDoctrine()
+            ->getRepository('AppBundle:Parametro')
+            ->getParametrosForOptions('CONTACTO_ASUNTO');
+
+        $form = $this->createForm(ContactoType::class, $contacto, array(
+            'asuntos_options' => $asuntosOptions
+        ));
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($contacto);
+            $em->flush();
+
+            return $this->redirectToRoute('contacto');
+        }
+
+        return $this->render('@App/default/contacto.html.twig', array(
+            'formulario' => $form->createView()
+        ));
     }
 
     public function productosAction($categoriaSlug=null)
@@ -149,6 +175,43 @@ class DefaultController extends Controller
         $em->persist($p8);
         $em->persist($p9);
         $em->persist($p10);
+
+        $pa1 = new Parametro();
+        $pa2 = new Parametro();
+        $pa3 = new Parametro();
+        $pa4 = new Parametro();
+        $pa5 = new Parametro();
+
+        $pa1->setDominio('ESTADO_PRODUCTO')
+            ->setAbreviatura('A')
+            ->setDescripcion('Activo')
+            ->setOrden(1);
+
+        $pa2->setDominio('ESTADO_PRODUCTO')
+            ->setAbreviatura('I')
+            ->setDescripcion('Inactivo')
+            ->setOrden(2);
+
+        $pa3->setDominio('CONTACTO_ASUNTO')
+            ->setAbreviatura('CT')
+            ->setDescripcion('Contácto Técnico')
+            ->setOrden(1);
+
+        $pa4->setDominio('CONTACTO_ASUNTO')
+            ->setAbreviatura('CC')
+            ->setDescripcion('Contácto Comercial')
+            ->setOrden(2);
+
+        $pa5->setDominio('CONTACTO_ASUNTO')
+            ->setAbreviatura('CF')
+            ->setDescripcion('Facturación')
+            ->setOrden(3);
+
+        $em->persist($pa1);
+        $em->persist($pa2);
+        $em->persist($pa3);
+        $em->persist($pa4);
+        $em->persist($pa5);
 
         $em->flush();
 

@@ -10,4 +10,30 @@ namespace AppBundle\Repository;
  */
 class ParametroRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getParametrosForOptions($dominio, $abreviatura = null)
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder()
+            ->select('p')
+            ->from('AppBundle:Parametro', 'p')
+            ->where('p.dominio = :dominio')
+            ->orderBy('p.orden', 'ASC')
+            ->setParameter('dominio', $dominio);
+
+
+        if ($abreviatura) {
+            $qb->andWhere('p.abreviatura = :abreviatura')
+                ->setParameter('abreviatura', $abreviatura);
+        }
+
+        $parametros = $qb->getQuery()
+            ->getResult();
+
+        $ret = array();
+
+        foreach ($parametros as $parametro){
+            $ret[$parametro->getDescripcion()] = $parametro->getAbreviatura();
+        }
+
+        return $ret;
+    }
 }
