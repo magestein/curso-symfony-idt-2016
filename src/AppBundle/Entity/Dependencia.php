@@ -28,6 +28,11 @@ class Dependencia
      */
     private $nombre;
 
+    public function __toString()
+    {
+        return $this->getNombre();
+    }
+
     /**
      * @return int
      */

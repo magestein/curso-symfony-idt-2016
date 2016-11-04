@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Funcionario</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ funcionario.id }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ funcionario.nombre }}</td>
+            </tr>
+            <tr>
+                <th>Apellido</th>
+                <td>{{ funcionario.apellido }}</td>
+            </tr>
+            <tr>
+                <th>Documentoidentidad</th>
+                <td>{{ funcionario.documentoIdentidad }}</td>
+            </tr>
+            <tr>
+                <th>Tipodocumento</th>
+                <td>{{ funcionario.tipoDocumento }}</td>
+            </tr>
+            <tr>
+                <th>Fechanacimiento</th>
+                <td>{% if funcionario.fechaNacimiento %}{{ funcionario.fechaNacimiento|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Sexo</th>
+                <td>{{ funcionario.sexo }}</td>
+            </tr>
+            <tr>
+                <th>Salario</th>
+                <td>{{ funcionario.salario }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ funcionario.email }}</td>
+            </tr>
+            <tr>
+                <th>Fechainicio</th>
+                <td>{% if funcionario.fechaInicio %}{{ funcionario.fechaInicio|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Fechaentrada</th>
+                <td>{% if funcionario.fechaEntrada %}{{ funcionario.fechaEntrada|date('H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Fechasalida</th>
+                <td>{% if funcionario.fechaSalida %}{{ funcionario.fechaSalida|date('H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Curriculum</th>
+                <td>{{ funcionario.curriculum }}</td>
+            </tr>
+            <tr>
+                <th>Observaciones</th>
+                <td>{{ funcionario.observaciones }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('funcionarios_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('funcionarios_edit', { 'id': funcionario.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,24 @@
+funcionarios_index:
+    path:     /
+    defaults: { _controller: "AppBundle:Funcionario:index" }
+    methods:  GET
+
+funcionarios_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:Funcionario:show" }
+    methods:  GET
+
+funcionarios_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:Funcionario:new" }
+    methods:  [GET, POST]
+
+funcionarios_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:Funcionario:edit" }
+    methods:  [GET, POST]
+
+funcionarios_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:Funcionario:delete" }
+    methods:  DELETE

@@ -1,3 +1,7 @@
+app_funcionarios:
+    resource: "@AppBundle/Resources/config/routing/funcionario.yml"
+    prefix:   /funcionarios
+
 homepage:
     path:      /
     defaults:  { _controller: AppBundle:Default:index }
