@@ -1,15 +1,13 @@
-{% extends 'base.html.twig' %}
+{% extends 'layoutCliente.html.twig' %}
 
 {% block body %}
     <h1>Funcionarios list</h1>
 
-    <table>
+    <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Documentoidentidad</th>
+                <th>CI</th>
                 <th>Tipodocumento</th>
                 <th>Fechanacimiento</th>
                 <th>Sexo</th>
@@ -18,35 +16,29 @@
                 <th>Fechainicio</th>
                 <th>Fechaentrada</th>
                 <th>Fechasalida</th>
-                <th>Curriculum</th>
-                <th>Observaciones</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for funcionario in funcionarios %}
             <tr>
-                <td><a href="{{ path('funcionarios_show', { 'id': funcionario.id }) }}">{{ funcionario.id }}</a></td>
-                <td>{{ funcionario.nombre }}</td>
-                <td>{{ funcionario.apellido }}</td>
-                <td>{{ funcionario.documentoIdentidad }}</td>
+                <td>{{ funcionario.nombre }} {{ funcionario.apellido }}</td>
+                <td class="text-center">{{ funcionario.documentoIdentidad }}</td>
                 <td>{{ funcionario.tipoDocumento }}</td>
-                <td>{% if funcionario.fechaNacimiento %}{{ funcionario.fechaNacimiento|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td class="text-center">{% if funcionario.fechaNacimiento %}{{ funcionario.fechaNacimiento|date('d/m/Y') }}{% endif %}</td>
                 <td>{{ funcionario.sexo }}</td>
-                <td>{{ funcionario.salario }}</td>
+                <td class="text-right">{{ funcionario.salario }}</td>
                 <td>{{ funcionario.email }}</td>
-                <td>{% if funcionario.fechaInicio %}{{ funcionario.fechaInicio|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if funcionario.fechaEntrada %}{{ funcionario.fechaEntrada|date('H:i:s') }}{% endif %}</td>
-                <td>{% if funcionario.fechaSalida %}{{ funcionario.fechaSalida|date('H:i:s') }}{% endif %}</td>
-                <td>{{ funcionario.curriculum }}</td>
-                <td>{{ funcionario.observaciones }}</td>
+                <td class="text-center">{% if funcionario.fechaInicio %}{{ funcionario.fechaInicio|date('d/m/Y') }}{% endif %}</td>
+                <td class="text-center">{% if funcionario.fechaEntrada %}{{ funcionario.fechaEntrada|date('H:i:s') }}{% endif %}</td>
+                <td class="text-center">{% if funcionario.fechaSalida %}{{ funcionario.fechaSalida|date('H:i:s') }}{% endif %}</td>
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('funcionarios_show', { 'id': funcionario.id }) }}">show</a>
+                            <a href="{{ path('funcionarios_show', { 'id': funcionario.id }) }}">Ver</a>
                         </li>
                         <li>
-                            <a href="{{ path('funcionarios_edit', { 'id': funcionario.id }) }}">edit</a>
+                            <a href="{{ path('funcionarios_edit', { 'id': funcionario.id }) }}">Editar</a>
                         </li>
                     </ul>
                 </td>
@@ -57,7 +49,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('funcionarios_new') }}">Create a new funcionario</a>
+            <a href="{{ path('funcionarios_new') }}">Crear nuevo funcionario</a>
         </li>
     </ul>
 {% endblock %}

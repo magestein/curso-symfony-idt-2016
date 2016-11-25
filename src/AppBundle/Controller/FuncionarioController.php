@@ -4,6 +4,8 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Funcionario;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -44,6 +46,21 @@ class FuncionarioController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            /**
+             * @var UploadedFile $file
+             */
+            $file = $funcionario->getCurriculum();
+
+            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+
+            $file->move(
+                $this->getParameter('curriculumns_directory'),
+                $fileName
+            );
+
+            $funcionario->setCurriculum($fileName);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($funcionario);
             $em->flush($funcionario);
@@ -77,8 +94,18 @@ class FuncionarioController extends Controller
      */
     public function editAction(Request $request, Funcionario $funcionario)
     {
+        $tiposDocumentosOptions = $this->getDoctrine()
+            ->getRepository('AppBundle:Parametro')
+            ->getParametrosForOptions('TIPO_DOCUMENTO');
+
+        $funcionario->setCurriculum(
+            new File($this->getParameter('curriculumns_directory') . $funcionario->getCurriculum())
+        );
+
         $deleteForm = $this->createDeleteForm($funcionario);
-        $editForm = $this->createForm('AppBundle\Form\FuncionarioType', $funcionario);
+        $editForm = $this->createForm('AppBundle\Form\FuncionarioType', $funcionario, array(
+            'tiposDocumentosOptions' => $tiposDocumentosOptions
+        ));
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {

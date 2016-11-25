@@ -135,10 +135,10 @@ class Funcionario
     /**
      * @var \string
      *
-     * @ORM\Column(name="curriculum", type="string", length=30)
+     * @ORM\Column(name="curriculum", type="string", length=50)
      *
      * @Assert\NotBlank()
-     * @Assert\Length(min="3", max="30")
+     * @Assert\Length(min="3", max="50")
      */
     private $curriculum;
 

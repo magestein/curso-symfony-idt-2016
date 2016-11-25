@@ -4,6 +4,8 @@ namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -22,13 +24,13 @@ class FuncionarioType extends AbstractType
             ->add('tipoDocumento', ChoiceType::class, array(
                 'choices' => array_flip($options['tiposDocumentosOptions'])
             ))
-            ->add('fechaNacimiento')
+            ->add('fechaNacimiento', DateType::class)
             ->add('sexo')
             ->add('salario')
             ->add('email')
-            ->add('fechaInicio')
-            ->add('fechaEntrada')
-            ->add('fechaSalida')
+            ->add('fechaInicio', DateType::class)
+            ->add('fechaEntrada', DateTimeType::class)
+            ->add('fechaSalida', DateTimeType::class)
             ->add('curriculum', FileType::class)
             ->add('observaciones')
             ->add('dependencia');
