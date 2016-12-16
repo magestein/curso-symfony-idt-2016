@@ -217,4 +217,15 @@ class DefaultController extends Controller
 
         die('importacion terminada');
     }
+
+    public function productos2Action()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $productos = $em->getRepository('AppBundle:Producto')->getProductos2();
+dump($productos);
+        return $this->render('@App/default/productos2.html.twig', array(
+            'productos' => $productos,
+        ));
+    }
 }

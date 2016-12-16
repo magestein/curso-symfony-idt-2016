@@ -17,3 +17,7 @@ productos_by_categoria:
 contacto:
     path:      /contacto
     defaults:  { _controller: AppBundle:Default:contacto }
+
+productos2:
+    path:      /productos2
+    defaults:  { _controller: AppBundle:Default:productos2 }

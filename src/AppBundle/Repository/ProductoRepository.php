@@ -67,4 +67,66 @@ class ProductoRepository extends \Doctrine\ORM\EntityRepository
 
         return $productos;
     }
+
+    public function getProductos2()
+    {
+//        Single Scalar
+//        $dql = "
+//            select
+//              p.nombre
+//            from AppBundle:Producto p
+//            where p.id = 1
+//        ";
+//        $query = $this->getEntityManager()->createQuery($dql);
+//        dump($query->getSingleScalarResult());
+//
+//        Single Result
+//        $dql = "
+//            select
+//              p
+//            from AppBundle:Producto p
+//            where p.id = 1
+//        ";
+//        $query = $this->getEntityManager()->createQuery($dql);
+//        dump($query->getSingleScalarResult());
+//
+//        Scalar
+//        $dql = "
+//            select
+//              p.nombre
+//            from AppBundle:Producto p
+//        ";
+//        $query = $this->getEntityManager()->createQuery($dql);
+//        dump($query->getSingleScalarResult());
+
+//        Result
+//        $dql = "
+//            select
+//              p
+//            from AppBundle:Producto p
+//        ";
+//        $query = $this->getEntityManager()->createQuery($dql);
+//        dump($query->getSingleScalarResult());
+
+        $dql = "
+            select 
+              p.id, 
+              p.nombre, 
+              p.precio, 
+              c.nombre as categoria
+            from AppBundle:Producto p
+            join p.categoria c
+        ";
+
+        $query = $this->getEntityManager()->createQuery($dql);
+
+        return $query->getResult();
+
+//        $qb = $this->getEntityManager()->createQueryBuilder()
+//            ->select('p.id, p.nombre, p.precio, c.nombre as categoria')
+//            ->from('AppBundle:Producto', 'p')
+//            ->join('p.categoria', 'c');
+//
+//        return $qb->getQuery()->getResult();
+    }
 }

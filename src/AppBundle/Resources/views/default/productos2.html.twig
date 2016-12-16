@@ -1,0 +1,31 @@
+{% extends 'layoutCliente.html.twig' %}
+
+{% block title %}Productos 2{% endblock %}
+
+{% block content %}
+
+    <table class="table table-bordered">
+
+        <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Categoría</th>
+        </tr>
+        </thead>
+
+        <tbody>
+
+        {% for producto in productos %}
+            <tr>
+                <td>{{ producto.nombre }}</td>
+                <td class="text-right">{{ producto.precio | monto('Gs') }}</td>
+                <td>{{ producto.categoria }}</td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+{% endblock %}

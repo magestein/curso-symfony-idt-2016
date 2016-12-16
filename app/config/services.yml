@@ -9,3 +9,10 @@ services:
         public: false
         tags:
             - { name: twig.extension }
+
+    app.util.date:
+        class: AppBundle\Framework\Utils\DateUtil
+        calls:
+            - [setLogger, ['@monolog.logger']]
+
+
