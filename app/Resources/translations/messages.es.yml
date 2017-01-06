@@ -1,0 +1,6 @@
+saludo:
+  inicial: Bienvenido %nombre%, cómo estás?
+  manzanas: "{0} %nombre%, No existen manzanas|{1} %nombre%, Se ha encontrado 1 manzana|]1,Inf[%nombre%, Se han encontrado %count% manzanas"
+
+funcionario:
+  creado: El funcionario ha sido creado

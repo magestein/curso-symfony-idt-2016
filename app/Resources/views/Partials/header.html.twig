@@ -26,6 +26,13 @@
                                 class="hidden-xs text-uppercase">Sign up</span></a>
                 </div>
 
+                <div>
+                    <a href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params') | merge({'_locale': 'es'})) }}">
+                        <span class="hidden-xs text-uppercase">Español</span></a>
+                    <a href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params') | merge({'_locale': 'en'})) }}">
+                        <span class="hidden-xs text-uppercase">Inglés</span></a>
+                </div>
+
             </div>
         </div>
     </div>

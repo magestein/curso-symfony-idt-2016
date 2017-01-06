@@ -6,8 +6,8 @@
 
     <div id="content">
         <div class="container">
-                <p class="text-muted lead text-center">{{ lipsum(10) }}</p>
-
+                <p class="text-muted lead text-center">{{ 'saludo.manzanas' | transchoice(manzanas, {'%nombre%': 'Juan'}) }}</p>
+                <p>{{ lipsum(10) }}</p>
             <div class="row products">
 
                 {% for producto in productos %}

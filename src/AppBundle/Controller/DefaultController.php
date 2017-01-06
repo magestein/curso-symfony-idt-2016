@@ -15,12 +15,15 @@ class DefaultController extends Controller
 {
     public function indexAction(Request $request)
     {
+        $manzanas = 10;
+
         $productos = $this->getDoctrine()
             ->getRepository('AppBundle:Producto')
             ->getNuevosProductos(8);
 
         return $this->render('@App/default/index.html.twig', array(
-            'productos' => $productos
+            'productos' => $productos,
+            'manzanas' => $manzanas
         ));
     }
 

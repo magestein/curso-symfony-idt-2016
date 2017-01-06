@@ -2,22 +2,28 @@ app_funcionarios:
     resource: "@AppBundle/Resources/config/routing/funcionario.yml"
     prefix:   /funcionarios
 
-homepage:
+homepage_default:
     path:      /
+    defaults:  { _controller: AppBundle:Default:index, _locale: es }
+
+homepage:
+    path:      /{_locale}
     defaults:  { _controller: AppBundle:Default:index }
+    requirements:
+        _locale: es|en
 
 productos:
-    path:      /productos
+    path:      /{_locale}/productos
     defaults:  { _controller: AppBundle:Default:productos }
 
 productos_by_categoria:
-    path:      /{categoriaSlug}/productos
+    path:      /{_locale}/{categoriaSlug}/productos
     defaults:  { _controller: AppBundle:Default:productos }
 
 contacto:
-    path:      /contacto
+    path:      /{_locale}/contacto
     defaults:  { _controller: AppBundle:Default:contacto }
 
 productos2:
-    path:      /productos2
+    path:      /{_locale}/productos2
     defaults:  { _controller: AppBundle:Default:productos2 }

@@ -65,6 +65,10 @@ class FuncionarioController extends Controller
             $em->persist($funcionario);
             $em->flush($funcionario);
 
+            $this->addFlash('success',
+                $this->get('translator')->trans('funcionario.creado')
+            );
+
             return $this->redirectToRoute('funcionarios_show', array('id' => $funcionario->getId()));
         }
 

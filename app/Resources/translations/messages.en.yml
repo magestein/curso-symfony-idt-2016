@@ -1,0 +1,3 @@
+saludo:
+  inicial: %nombre%, Welcome
+  manzanas: "{0} there is no apples|{1} there is 1 apple|]1,Inf[there are %count% apples"
