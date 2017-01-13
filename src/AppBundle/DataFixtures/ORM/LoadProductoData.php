@@ -13,22 +13,44 @@ class LoadProductoData extends AbstractFixture implements OrderedFixtureInterfac
 {
     public function load(ObjectManager $manager)
     {
-//        $p1->setNombre('Producto 1')
-//            ->setCategoria($c1)
-//            ->setPrecio(500)
-//            ->setEstado('A')
-//            ->setOferta(false);
+        $categorias = $manager
+            ->getRepository('AppBundle:Categoria')
+            ->findAll();
 
-        for($i=1; $i<1001; ++$i){
+        $estados = ['A', 'I'];
+
+        $precios = [100, 50.20, 59.99, 30, 40, 80, 55, 46];
+
+        $oferta = [true, false];
+
+        $nuevo = [
+            $this->sumarFecha('P10D'),
+            $this->sumarFecha('P1D'),
+            new \DateTime('now'),
+            $this->restarFecha('P10D'),
+            $this->restarFecha('P1D'),
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+        ];
+
+        for($i=1; $i<2001; ++$i){
 
             $p = new Producto();
 
             $p->setNombre('Producto ' . $i)
-                ->setCategoria()
-                ->setPrecio()
-                ->setEstado()
-                ->setOferta()
-                ->setNuevo();
+                ->setCategoria($categorias[array_rand($categorias)])
+                ->setPrecio($precios[array_rand($precios)])
+                ->setEstado($estados[array_rand($estados)])
+                ->setOferta($oferta[array_rand($oferta)])
+                ->setNuevo($nuevo[array_rand($nuevo)]);
 
             $manager->persist($p);
         }
@@ -39,5 +61,17 @@ class LoadProductoData extends AbstractFixture implements OrderedFixtureInterfac
     public function getOrder()
     {
         return 3;
+    }
+
+    private function sumarFecha($dias){
+        $f1 = new \DateTime('now');
+        $f1->add(new \DateInterval($dias));
+        return $f1;
+    }
+
+    private function restarFecha($dias){
+        $f1 = new \DateTime('now');
+        $f1->sub(new \DateInterval($dias));
+        return $f1;
     }
 }

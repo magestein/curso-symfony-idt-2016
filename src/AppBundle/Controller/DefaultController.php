@@ -76,6 +76,9 @@ class DefaultController extends Controller
         ));
     }
 
+    /**
+     * Prohibido usar. Para esto están los DataFixtures
+     */
     public function dataImportAction()
     {
         $em = $this->getDoctrine()->getEntityManager();
