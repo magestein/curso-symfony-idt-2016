@@ -8,8 +8,8 @@ use AppBundle\Entity\Parametro;
 use AppBundle\Entity\Producto;
 use AppBundle\Form\ContactoType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
@@ -65,6 +65,9 @@ class DefaultController extends Controller
         $productos = $this->getDoctrine()
             ->getRepository('AppBundle:Producto')
             ->getProductos($params);
+
+        if(empty($productos))
+            throw $this->createNotFoundException();
 
         $categorias = $this->getDoctrine()
             ->getRepository('AppBundle:Categoria')
@@ -233,5 +236,27 @@ dump($productos);
         return $this->render('@App/default/productos2.html.twig', array(
             'productos' => $productos,
         ));
+    }
+
+    public function clientePruebaAjaxAction($ruc)
+    {
+        $cliente = array(
+            'id' => 1,
+            'nombre' => 'Juan Ardissone',
+            'ruc' => '4472014-9'
+        );
+
+        return new JsonResponse($cliente);
+    }
+
+    public function proveedorPruebaAjaxAction($ruc)
+    {
+        $cliente = array(
+            'id' => 1,
+            'nombre' => 'Vicente Insfran',
+            'ruc' => '4567891-9'
+        );
+
+        return new JsonResponse($cliente);
     }
 }

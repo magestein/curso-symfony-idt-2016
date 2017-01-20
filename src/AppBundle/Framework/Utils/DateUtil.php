@@ -16,8 +16,6 @@ class DateUtil
     {
         $fecha = date('d/m/Y');
 
-        $this->logger->debug('------------------------------' . $fecha);
-
         return $fecha;
     }
 

@@ -27,3 +27,14 @@ contacto:
 productos2:
     path:      /{_locale}/productos2
     defaults:  { _controller: AppBundle:Default:productos2 }
+
+cliente.json:
+    path:      /clientes/{ruc}
+    defaults:  { _controller: AppBundle:Default:clientePruebaAjax }
+    methods:   [GET]
+
+proveedor.json:
+    path:      /proveedores/{ruc}
+    defaults:  { _controller: AppBundle:Default:proveedorPruebaAjax }
+    methods:   [GET]
+
