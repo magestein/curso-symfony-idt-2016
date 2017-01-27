@@ -17,3 +17,6 @@
 .idea
 /nbproject/
 /web/uploads/
+/web/assets/
+/web/js/
+/web/css/
