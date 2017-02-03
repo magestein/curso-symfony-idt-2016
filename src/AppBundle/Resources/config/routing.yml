@@ -38,3 +38,7 @@ proveedor.json:
     defaults:  { _controller: AppBundle:Default:proveedorPruebaAjax }
     methods:   [GET]
 
+admin.home:
+    path:      /admin/home
+    defaults:  { _controller: AppBundle:Admin:home }
+    methods:   [GET]
