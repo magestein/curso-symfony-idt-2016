@@ -19,11 +19,26 @@
                     <a href="#" class="email" data-animate-hover="pulse"><i class="fa fa-envelope"></i></a>
                 </div>
 
+
+
+
+
+
                 <div class="login">
-                    <a href="{{ path('admin.home') }}"><i class="fa fa-sign-in"></i>
-                        <span class="hidden-xs text-uppercase">Entrar</span></a>
-                    <a href="customer-register.html"><i class="fa fa-user"></i> <span
-                                class="hidden-xs text-uppercase">Sign up</span></a>
+
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+                        <a href="{{ path('fos_user_security_logout') }}">
+                            {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                        </a>
+                    {% else %}
+                        <a href="{{ path('fos_user_security_login') }}"><i class="fa fa-sign-in"></i>
+                            <span class="hidden-xs text-uppercase">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</span></a>
+
+                        <a href="{{ path('fos_user_registration_register') }}"><i class="fa fa-user"></i> <span
+                                    class="hidden-xs text-uppercase">Registrarse</span></a>
+                    {% endif %}
+
                 </div>
 
                 <div>

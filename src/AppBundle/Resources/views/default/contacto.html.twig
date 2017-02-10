@@ -4,10 +4,6 @@
 
     {{ parent() }}
 
-    {#<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false"></script>#}
-    {#<script src="{{ asset('bundles/app/js/gmaps.js') }}"></script>#}
-    {#<script src="{{ asset('bundles/app/js/gmaps.init.js') }}"></script>#}
-
 {% endblock %}
 
 {% block title %}Contacto{% endblock %}
@@ -33,7 +29,7 @@
                             vicinity.</p>
                         <p>Please feel free to contact us, our customer service center is working for you 24/7.</p>
 
-                        {% include ':Partials:mensajes.html.twig' %}
+                        {% include 'Partials/messages.html.twig' %}
 
                         <div class="heading">
                             <h3>Contact form</h3>

@@ -18,8 +18,30 @@ class Usuario extends BaseUser
      */
     protected $id;
 
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    protected $fechaNacimiento;
+
     public function __construct()
     {
         parent::__construct();
     }
+
+    /**
+     * @return mixed
+     */
+    public function getFechaNacimiento()
+    {
+        return $this->fechaNacimiento;
+    }
+
+    /**
+     * @param mixed $fechaNacimiento
+     */
+    public function setFechaNacimiento($fechaNacimiento)
+    {
+        $this->fechaNacimiento = $fechaNacimiento;
+    }
+
 }
