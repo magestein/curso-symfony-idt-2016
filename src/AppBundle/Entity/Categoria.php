@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -36,9 +37,8 @@ class Categoria
     private $estado;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="slug", type="string", length=100)
+     * @Gedmo\Slug(fields={"nombre"}, updatable=true, unique=true)
+     * @ORM\Column(length=128, unique=true)
      */
     private $slug;
 
@@ -101,7 +101,7 @@ class Categoria
     }
 
     /**
-     * @return string
+     * @return mixed
      */
     public function getSlug()
     {
@@ -109,7 +109,7 @@ class Categoria
     }
 
     /**
-     * @param string $slug
+     * @param mixed $slug
      */
     public function setSlug($slug)
     {

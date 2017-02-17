@@ -11,20 +11,26 @@ class LoadCategoriaData extends AbstractFixture implements OrderedFixtureInterfa
 {
     public function load(ObjectManager $manager)
     {
+//        $categorias = [
+//            'electrodomesticos' => 'Electrodomésticos',
+//            'juegos-y-consolas' => 'Juegos y Consolas',
+//            'celulares' => 'Celulares',
+//            'ropa' => 'Ropa'
+//        ];
+
         $categorias = [
-            'electrodomesticos' => 'Electrodomésticos',
-            'juegos-y-consolas' => 'Juegos y Consolas',
-            'celulares' => 'Celulares',
-            'ropa' => 'Ropa'
+            'Electrodomésticos',
+            'Juegos y Consolas',
+            'Celulares',
+            'Ropa'
         ];
 
         $estados = ['A', 'I'];
 
-        foreach($categorias as $slug => $nombre){
+        foreach($categorias as $nombre){
 
             $c = new Categoria();
             $c->setNombre($nombre);
-            $c->setSlug($slug);
             $c->setEstado($estados[array_rand($estados)]);
 
             $manager->persist($c);
