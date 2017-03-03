@@ -10,6 +10,7 @@ use AppBundle\Form\ContactoType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
@@ -258,5 +259,30 @@ dump($productos);
         );
 
         return new JsonResponse($cliente);
+    }
+
+    public function reporteProductosAction($categoria = null)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $params = array();
+
+        if($categoria)
+            $params['categoria'] = $categoria;
+
+        $productos = $em->getRepository('AppBundle:Producto')->getProductos($params);
+
+        $html = $this->renderView('@App/default/reportes/productos.html.twig', array(
+            'productos' => $productos,
+        ));
+
+        return new Response(
+            $this->get('knp_snappy.pdf')->getOutputFromHtml($html),
+            200,
+            array(
+                'Content-Type'          => 'application/pdf',
+                'Content-Disposition'   => 'attachment; filename="file.pdf"'
+            )
+        );
     }
 }

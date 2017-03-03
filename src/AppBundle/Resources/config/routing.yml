@@ -2,6 +2,10 @@ app_funcionarios:
     resource: "@AppBundle/Resources/config/routing/funcionario.yml"
     prefix:   /funcionarios
 
+reporte.productos:
+    path:      /{_locale}/reporte/productos
+    defaults:  { _controller: AppBundle:Default:reporteProductos }
+
 homepage_default:
     path:      /
     defaults:  { _controller: AppBundle:Default:index, _locale: es }

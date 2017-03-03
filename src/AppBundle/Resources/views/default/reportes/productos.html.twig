@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+
+    <link rel="stylesheet" href="{{ absolute_url(asset('assets/bootstrap/dist/css/bootstrap.css')) }}" />
+
+{% endblock %}
+
+{% block javascripts %}
+
+
+{% endblock %}
+
+
+{% block body %}
+
+    <table class="table table-bordered">
+
+        <thead>
+        <tr>
+            <th class="text-center">Producto</th>
+            <th class="text-center">Nombre</th>
+            <th class="text-center">Precio</th>
+            <th class="text-center">Oferta</th>
+            <th class="text-center">Fecha de Alta</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for producto in productos %}
+            {% set imagen = producto.nombre in ['Producto 1', 'Producto 2', 'Producto 3'] ? producto.nombre : 'producto' %}
+
+            <tr class="text-danger">
+                <td><img src="{{ absolute_url(asset('bundles/app/img/' ~ imagen ~ '.jpg')) }}" alt="" width="100"></td>
+                <td>{{ producto.nombre }}</td>
+                <td class="text-right">{{ producto.precio }}</td>
+                <td class="text-center">{{ producto.oferta ? 'Si' : 'No' }}</td>
+                <td class="text-center">{{ producto.fechaAlta | date('d/m/Y') }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+
+{% endblock %}

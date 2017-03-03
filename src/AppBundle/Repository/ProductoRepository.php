@@ -62,6 +62,11 @@ class ProductoRepository extends \Doctrine\ORM\EntityRepository
                 ->setParameter('categoria', $params['categoria']);
         }
 
+        if (isset($params['id'])) {
+            $qb->andWhere('c.id = :id')
+                ->setParameter('id', $params['id']);
+        }
+
         $productos = $qb->getQuery()
             ->getResult();
 

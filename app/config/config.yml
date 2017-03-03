@@ -93,3 +93,10 @@ stof_doctrine_extensions:
     orm:
         default:
             sluggable: true
+
+knp_snappy:
+    pdf:
+        enabled:    true
+        binary:     /tmp/wkhtmltox/bin/wkhtmltopdf
+        options:
+            page-size:  Letter
