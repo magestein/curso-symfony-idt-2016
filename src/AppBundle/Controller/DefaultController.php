@@ -261,7 +261,7 @@ dump($productos);
         return new JsonResponse($cliente);
     }
 
-    public function reporteProductosAction($categoria = null)
+    public function reporteProductosAction(Request $request, $categoria = null)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -276,13 +276,17 @@ dump($productos);
             'productos' => $productos,
         ));
 
-        return new Response(
-            $this->get('knp_snappy.pdf')->getOutputFromHtml($html),
-            200,
-            array(
-                'Content-Type'          => 'application/pdf',
-                'Content-Disposition'   => 'attachment; filename="file.pdf"'
-            )
-        );
+        if($request->get('_format') === 'html') {
+            return new Response($html);
+        }else if($request->get('_format') == 'pdf') {
+            return new Response(
+                $this->get('knp_snappy.pdf')->getOutputFromHtml($html),
+                200,
+                array(
+                    'Content-Type' => 'application/pdf',
+                    'Content-Disposition' => 'attachment; filename="file.pdf"'
+                )
+            );
+        }
     }
 }

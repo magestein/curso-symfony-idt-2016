@@ -4,6 +4,12 @@
 
     <link rel="stylesheet" href="{{ absolute_url(asset('assets/bootstrap/dist/css/bootstrap.css')) }}" />
 
+    <style type="text/css">
+        tr {
+            page-break-inside: avoid;
+        }
+    </style>
+
 {% endblock %}
 
 {% block javascripts %}

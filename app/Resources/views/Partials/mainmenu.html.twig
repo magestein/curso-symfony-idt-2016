@@ -31,6 +31,9 @@
                     <li class="{% if app.request.attributes.get('_route') in ['productos', 'productos_by_categoria'] %}active{% endif %}">
                         <a href="{{ path('productos') }}">Productos </a>
                     </li>
+                    <li class="{% if app.request.attributes.get('_route') in ['productos', 'productos_by_categoria'] %}active{% endif %}">
+                        <a href="{{ path('reporte.productos', {'_format': 'pdf'}) }}" target="_blank">Reporte </a>
+                    </li>
                     <li class="{% if app.request.attributes.get('_route') == 'contacto' %}active{% endif %}">
                         <a href="{{ path('contacto') }}">Contacto</a>
                     </li>

@@ -3,7 +3,7 @@ app_funcionarios:
     prefix:   /funcionarios
 
 reporte.productos:
-    path:      /{_locale}/reporte/productos
+    path:      /{_locale}/reporte/productos.{_format}
     defaults:  { _controller: AppBundle:Default:reporteProductos }
 
 homepage_default:

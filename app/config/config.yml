@@ -97,6 +97,7 @@ stof_doctrine_extensions:
 knp_snappy:
     pdf:
         enabled:    true
-        binary:     /tmp/wkhtmltox/bin/wkhtmltopdf
+        binary:     /usr/bin/wkhtmltopdf
         options:
             page-size:  Letter
+            viewport_size: '1280x1024'
