@@ -55,7 +55,7 @@ class DefaultController extends Controller
         ));
     }
 
-    public function productosAction($categoriaSlug=null)
+    public function productosAction(Request $request, $categoriaSlug=null)
     {
         $params = array();
 
@@ -63,19 +63,23 @@ class DefaultController extends Controller
             $params['categoria'] = $categoriaSlug;
         }
 
-        $productos = $this->getDoctrine()
-            ->getRepository('AppBundle:Producto')
-            ->getProductos($params);
-
-        if(empty($productos))
-            throw $this->createNotFoundException();
-
         $categorias = $this->getDoctrine()
             ->getRepository('AppBundle:Categoria')
             ->getCategorias();
 
+        $query = $this->getDoctrine()
+            ->getRepository('AppBundle:Producto')
+            ->getProductosQuery($params);
+
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $query, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            12/*limit per page*/
+        );
+
         return $this->render('@App/default/productos.html.twig', array(
-            'productos' => $productos,
+            'pagination' => $pagination,
             'categorias' => $categorias
         ));
     }
@@ -270,7 +274,7 @@ dump($productos);
         if($categoria)
             $params['categoria'] = $categoria;
 
-        $productos = $em->getRepository('AppBundle:Producto')->getProductos($params);
+        $productos = $em->getRepository('AppBundle:Producto')->getProductosParaReporte($params);
 
         $html = $this->renderView('@App/default/reportes/productos.html.twig', array(
             'productos' => $productos,

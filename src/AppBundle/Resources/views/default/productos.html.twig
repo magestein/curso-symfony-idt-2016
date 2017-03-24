@@ -55,9 +55,17 @@ _________________________________________________________ -->
                         have found and carefully selected worldwide. Pellentesque habitant morbi tristique senectus et
                         netuss.</p>
 
+                    <div class="count">
+                        Total de Producto: {{ pagination.getTotalItemCount }}
+                    </div>
+
+                    <div class="navigation">
+                        {{ knp_pagination_render(pagination) }}
+                    </div>
+
                     <div class="row products">
 
-                        {% for producto in productos %}
+                        {% for producto in pagination %}
                             {% include '@App/Partials/producto.html.twig' with {
                             'producto': producto,
                             'pantallaGrande' : false

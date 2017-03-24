@@ -44,7 +44,35 @@ class ProductoRepository extends \Doctrine\ORM\EntityRepository
      *  "categoria" -> slug de la categoría
      * @return array
      */
-    public function getProductos($params = array())
+    public function getProductosQuery($params = array())
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder()
+            ->select('p')
+            ->from('AppBundle:Producto', 'p')
+            ->join('p.categoria', 'c')
+            ->where('p.estado = :estadoProducto')
+            ->andWhere('c.estado = :estadoCategoria')
+            ->orderBy('p.nombre', 'ASC')
+            ->addOrderBy('p.id', 'ASC')
+            ->setParameter('estadoProducto', 'A')
+            ->setParameter('estadoCategoria', 'A');
+
+        if (isset($params['categoria'])) {
+            $qb->andWhere('c.slug = :categoria')
+                ->setParameter('categoria', $params['categoria']);
+        }
+
+        if (isset($params['id'])) {
+            $qb->andWhere('c.id = :id')
+                ->setParameter('id', $params['id']);
+        }
+
+        $query = $qb->getQuery();
+
+        return $query;
+    }
+
+    public function getProductosParaReporte($params = array())
     {
         $qb = $this->getEntityManager()->createQueryBuilder()
             ->select('p')
